@@ -10,7 +10,6 @@ class Solution {
                 }
             }
         }
-        System.out.println(current[0] + " " + current[1]);
         moveCase:
         for(int i = 0; i<routes.length; i++){
             String[] route = routes[i].split(" ");
