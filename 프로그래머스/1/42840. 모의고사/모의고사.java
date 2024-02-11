@@ -30,6 +30,10 @@ class Solution {
                 list.add(i+1);
             }
         }
-        return list.stream().mapToInt(i->i).toArray();
+        int[] answer = new int[list.size()];
+        for(int i = 0; i < list.size(); i++){
+            answer[idx++] = list.get(i);
+        }
+        return answer;
     }
 }
