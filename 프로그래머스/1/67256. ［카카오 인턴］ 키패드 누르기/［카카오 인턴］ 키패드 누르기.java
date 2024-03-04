@@ -1,49 +1,47 @@
 class Solution {
     public String solution(int[] numbers, String hand) {
-        StringBuilder answer = new StringBuilder();
+        String answer = "";
+        int[][] pNum = {
+            {3,1}, //0
+            {0,0}, //1
+            {0,1}, //2
+            {0,2}, //3
+            {1,0}, //4
+            {1,1}, //5
+            {1,2}, //6
+            {2,0}, //7
+            {2,1}, //8
+            {2,2} //9
+        };
         int[] lNum = {3,0};
         int[] rNum = {3,2};
-        int tmp = -1;
-        int rTmp = -1;
-        int lTmp = -1;
         for(int i : numbers){
-           if(i==1 || i==4 || i==7){
-               lNum[0] = (i-1)/3;
-               lNum[1] = 0;
-               answer.append("L");
-           } else if(i==3 || i==6 || i==9){
-               rNum[0] = (i-1)/3;
-               rNum[1] = 2;
-               answer.append("R");
-           } else{
-               if(i==0){
-                   tmp = 3;
-               } else{
-                   tmp = i/3;
-               }
-               lTmp = Math.abs(tmp-lNum[0])+Math.abs(1-lNum[1]);
-               rTmp = Math.abs(tmp-rNum[0])+Math.abs(1-rNum[1]);
-               if(rTmp>lTmp){
-                   answer.append("L");
-                   lNum[0]=tmp;
-                   lNum[1]=1;
-               } else if(rTmp<lTmp){
-                   answer.append("R");
-                   rNum[0]=tmp;
-                   rNum[1]=1;
-               } else{
-                   if(hand.equals("left")){
-                       answer.append("L");
-                       lNum[0]=tmp;
-                       lNum[1]=1;
-                   } else{
-                       answer.append("R");
-                       rNum[0]=tmp;
-                       rNum[1]=1;
-                   }
-               }
-           }
+            if(i==1 || i==4 || i==7){
+                answer += "L";
+                lNum = pNum[i];
+            } else if(i==3 || i==6 || i==9){
+                answer += "R";
+                rNum = pNum[i];
+            } else{
+                if(Math.abs(lNum[0]-pNum[i][0])+Math.abs(lNum[1]-pNum[i][1]) > 
+                   Math.abs(rNum[0]-pNum[i][0])+Math.abs(rNum[1]-pNum[i][1])){
+                    answer += "R";
+                    rNum = pNum[i];
+                } else if(Math.abs(lNum[0]-pNum[i][0])+Math.abs(lNum[1]-pNum[i][1]) < 
+                   Math.abs(rNum[0]-pNum[i][0])+Math.abs(rNum[1]-pNum[i][1])){
+                    answer += "L";
+                    lNum = pNum[i];
+                } else{
+                    if(hand.equals("left")){
+                        answer += "L";
+                        lNum = pNum[i];
+                    } else{
+                        answer += "R";
+                        rNum = pNum[i];
+                    }
+                }
+            }
         }
-        return answer.toString();
+        return answer;
     }
 }
