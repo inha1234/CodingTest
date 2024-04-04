@@ -2,12 +2,12 @@ class Solution {
     public String solution(String s) {
         StringBuilder answer = new StringBuilder();
         String str = s.toLowerCase();
-        boolean isActive = false;
+        boolean isActive = true;
         for(int i = 0; i < str.length(); i++){
             if(str.charAt(i)==' '){
                 isActive = true;
                 answer.append(str.charAt(i));
-            } else if(isActive || i==0){
+            } else if(isActive){
                 isActive = false;
                 answer.append(Character.toUpperCase(str.charAt(i)));
             } else{
