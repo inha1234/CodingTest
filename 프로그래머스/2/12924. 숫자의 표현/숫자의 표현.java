@@ -1,0 +1,20 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        for(int i = 1; i <= n; i++){
+            int tmp = 0;
+            int j = i;
+            while(tmp<n){
+                tmp += j;
+                j++;
+                if(tmp==n){
+                    answer++;
+                    break;
+                } else if(tmp>n){
+                    break;
+                }
+            }
+        }
+        return answer;
+    }
+}
