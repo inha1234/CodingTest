@@ -1,10 +1,10 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.LinkedList;
 
 class Solution {
     public int solution(String dirs) {
         int answer = 0;
-        Set<String> visited = new HashSet<>();
+        List<String> visited = new LinkedList<>();
         int[] current = {0,0};
         int[] before = {0,0};
         for(int i = 0; i < dirs.length();i++){
